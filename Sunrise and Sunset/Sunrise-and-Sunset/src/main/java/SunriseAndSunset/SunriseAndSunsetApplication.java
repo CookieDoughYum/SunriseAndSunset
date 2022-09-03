@@ -1,4 +1,4 @@
-package https.api.sunrisesunset.org.json.lat60.lng40.Sunrise.and.Sunset;
+package SunriseAndSunset;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
