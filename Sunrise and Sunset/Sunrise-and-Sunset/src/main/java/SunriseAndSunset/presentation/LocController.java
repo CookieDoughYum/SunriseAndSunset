@@ -19,15 +19,17 @@ public class LocController {
     }
 
     @GetMapping("/searchLocResults")
-    @ApiOperation(value = "Searches for books matching the search term",
+    @ApiOperation(value = "Searches for sunrise and sunset",
             notes = "Response may include multiple Result values.",
             response = String.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Result(s) found"),
             @ApiResponse(code = 404, message = "Result(s) not found")
     })
-    public String getResults(@RequestParam(value="q") String query){
-    return "Searching for books related to " + query;
+    public String getResults(@RequestParam Float lat,
+    @RequestParam Float lng,
+    @RequestParam String date){
+    return "Searching for sunrise and sunset of coordinates " + lat + " " + lng + " in the date " + date;
 }
 
 }
