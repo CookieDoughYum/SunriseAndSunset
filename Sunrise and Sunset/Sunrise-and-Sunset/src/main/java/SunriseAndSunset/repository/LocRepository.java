@@ -1,7 +1,11 @@
 package SunriseAndSunset.repository;
 
+import SunriseAndSunset.repository.DTO.Dto;
+import SunriseAndSunset.repository.DTO.Results;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.List;
 
 @Repository
 public class LocRepository {
@@ -15,7 +19,7 @@ public class LocRepository {
                 .build();
     }
 
-        public String getResults(String query) {
+        public Results getResults(String query) {
             return webClient.get()
                     .uri(uriBuilder -> uriBuilder
                             .queryParam("lat", "latitude")
@@ -24,8 +28,10 @@ public class LocRepository {
                             .build()
                     )
                     .retrieve()
-                    .bodyToMono(String.class)
-                    .block();
+                    .bodyToMono(Dto.class)
+                    .block()
+                    .getResults();
+
         }
     }
 

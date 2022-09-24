@@ -1,7 +1,10 @@
 package SunriseAndSunset.service;
 
+import SunriseAndSunset.repository.DTO.Results;
 import SunriseAndSunset.repository.LocRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LocService {
@@ -11,8 +14,8 @@ public class LocService {
         this.locRepository = locRepository;
     }
 
-    public String getResults(String query){
-        return "Searching for books related to " + query;
+    public Results getResults(String query){
+        return locRepository.getResults(query);
     }
 
 }
