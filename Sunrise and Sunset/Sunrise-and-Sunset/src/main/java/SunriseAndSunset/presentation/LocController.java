@@ -35,7 +35,7 @@ public class LocController {
     public Results getResults(@RequestParam(value="lat") float latitude,
                               @RequestParam(value="lng") float longitude,
                               @RequestParam(value="date") String date) {
-        Results results = locService.getResults(query);
+        Results results = locService.getResults(latitude, longitude, date);
         if (results==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
         }

@@ -19,12 +19,12 @@ public class LocRepository {
                 .build();
     }
 
-        public Results getResults(String query) {
+        public Results getResults(float latitude, float longitude, String date) {
             return webClient.get()
                     .uri(uriBuilder -> uriBuilder
-                            .queryParam("lat", "latitude")
-                            .queryParam("lng", "longitude")
-                            .queryParam("date", "date")
+                            .queryParam("lat", latitude)
+                            .queryParam("lng", longitude)
+                            .queryParam("date", date)
                             .build()
                     )
                     .retrieve()
