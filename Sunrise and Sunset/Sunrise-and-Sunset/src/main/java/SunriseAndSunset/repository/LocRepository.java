@@ -19,6 +19,10 @@ public class LocRepository {
                 .build();
     }
 
+    public LocRepository(WebClient webClientMock) {
+        this.webClient = webClientMock;
+    }
+
         public Results getResults(float latitude, float longitude, String date) {
             return webClient.get()
                     .uri(uriBuilder -> uriBuilder
