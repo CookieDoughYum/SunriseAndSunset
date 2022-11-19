@@ -40,11 +40,24 @@ public class LocControllerIntTest {
                 .thenReturn(results);
         //when
         //then
-        MvcResult mvcResult = mockMvc.perform(get("/searchLocResults?lat=" + latitude + "long=" + longitude + "date=" + date))
+        MvcResult mvcResult = mockMvc.perform(get("/searchLocResults?date=" + date + "&lat=" + latitude + "&lng=" + longitude))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
 
         assertEquals(MediaType.APPLICATION_JSON_VALUE, mvcResult.getResponse().getContentType());
+    }
+    @Test
+    public void givenBadQuery_whenSearchForResults_thenIsNotFound() throws Exception {
+        //given
+       float latitude=0;
+       float longitude=0;
+       String date="2022-11-5";
+
+        //when
+        //then
+        mockMvc.perform(get("/searchLocResults?date=" + date + "&lat=" + latitude + "&lng=" + longitude))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }
