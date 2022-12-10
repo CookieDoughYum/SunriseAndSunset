@@ -36,9 +36,10 @@ public class LocController {
     })
     public Results getResults(@RequestParam(value="query") String query) {
         String[] queryArray=query.split(" ");
-        float latitude=Float.parseFloat(queryArray[0]);
-        float longitude=Float.parseFloat(queryArray[1]);
-        String date=queryArray[2];
+        String date=queryArray[0];
+        float latitude=Float.parseFloat(queryArray[1]);
+        float longitude=Float.parseFloat(queryArray[2]);
+
 
         Results results = locService.getResults(latitude, longitude, date);
         if (results==null) {
