@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class LocController {
     private final LocService locService;
 
@@ -32,9 +34,13 @@ public class LocController {
             @ApiResponse(code = 200, message = "Result(s) found"),
             @ApiResponse(code = 404, message = "Result(s) not found")
     })
-    public Results getResults(@RequestParam(value="lat") float latitude,
-                              @RequestParam(value="lng") float longitude,
-                              @RequestParam(value="date") String date) {
+    public Results getResults(@RequestParam(value="query") String query) {
+        String[] queryArray=query.split(" ");
+        String date=queryArray[0];
+        float latitude=Float.parseFloat(queryArray[1]);
+        float longitude=Float.parseFloat(queryArray[2]);
+
+
         Results results = locService.getResults(latitude, longitude, date);
         if (results==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
