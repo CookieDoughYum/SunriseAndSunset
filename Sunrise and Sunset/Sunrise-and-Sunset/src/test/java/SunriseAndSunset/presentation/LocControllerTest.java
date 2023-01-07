@@ -32,16 +32,17 @@ class LocControllerTest {
     @Test
     void givenGoodQuery_whenGetResults_thenReturnListOfResults() {
         //given
-        float latitude = 0;
-        float longitude = 0;
-        String date = "2022-11-5";
+        String query="";
         Results results = new Results();
+        String date="";
+        float latitude=0;
+        float longitude=0;
 
-        when(locService.getResults(latitude, longitude, date))
+        when(locService.getResults(date, latitude, longitude))
                 .thenReturn(results);
 
         //when
-        Results actualResults = locController.getResults(latitude, longitude, date);
+        Results actualResults = locController.getResults(query);
 
         //then
         assertEquals(results, actualResults);
@@ -50,13 +51,11 @@ class LocControllerTest {
     @Test
     void givenBadQuery_whenGetResults_thenThrowsException() {
         //given
-        float latitude = 0;
-        float longitude = 0;
-        String date = "2022-11-5";
+        String query="";
 
         //when
         //then
-        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(latitude, longitude, date));
+        Throwable exceptionThrown = assertThrows(ResponseStatusException.class, () -> locController.getResults(query));
         assertEquals(exceptionThrown.getMessage(), "404 NOT_FOUND \"Result(s) not found.\"");
     }
 }

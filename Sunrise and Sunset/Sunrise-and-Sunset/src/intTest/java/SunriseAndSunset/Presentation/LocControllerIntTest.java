@@ -36,7 +36,7 @@ public class LocControllerIntTest {
         String date = "2022-11-5";
         Results results = new Results();
 
-        when(locService.getResults(latitude, longitude, date))
+        when(locService.getResults(date, latitude, longitude))
                 .thenReturn(results);
         //when
         //then

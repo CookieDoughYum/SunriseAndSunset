@@ -65,7 +65,7 @@ class LocRepositoryTest {
                 .thenReturn(locResponse);
 
         //when
-        Results actualLocResults = locRepository.getResults(latitude, longitude, date);
+        Results actualLocResults = locRepository.getResults(date, latitude, longitude);
 
         //then
         assertEquals(results, actualLocResults);

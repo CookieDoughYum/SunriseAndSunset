@@ -41,7 +41,7 @@ public class LocController {
         float longitude=Float.parseFloat(queryArray[2]);
 
 
-        Results results = locService.getResults(latitude, longitude, date);
+        Results results = locService.getResults(date, latitude, longitude);
         if (results==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result(s) not found.");
         }

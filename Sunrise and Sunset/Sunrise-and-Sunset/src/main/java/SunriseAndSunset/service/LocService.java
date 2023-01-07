@@ -14,8 +14,8 @@ public class LocService {
         this.locRepository = locRepository;
     }
 
-    public Results getResults(float latitude, float longitude, String date){
-        return locRepository.getResults(latitude, longitude, date);
+    public Results getResults(String date, float latitude, float longitude){
+        return locRepository.getResults(date, latitude, longitude);
     }
 
 }

@@ -32,11 +32,11 @@ class LocServiceTest {
         String date = "2022-11-5";
         Results results = new Results();
 
-        when(locService.getResults(latitude, longitude, date))
+        when(locService.getResults(date, latitude, longitude))
                 .thenReturn(results);
 
         //when
-        Results actualResults = locService.getResults(latitude, longitude, date);
+        Results actualResults = locService.getResults(date, latitude, longitude);
 
         //then
         assertEquals(results, actualResults);
